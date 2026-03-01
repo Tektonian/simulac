@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from typing import Any, Dict
-
+import json
 from urllib.parse import urlencode
+
 from websockets.sync.client import connect, ClientConnection
 
 from tt.sdk.runner_service.common.runner import IRunner
@@ -33,6 +34,7 @@ class RemoteRunner(IRunner):
         self.id = id
         self.env_id = env_id
         self.state = state
+        self.kwargs = kwargs
 
         params = urlencode(kwargs)
 
@@ -40,7 +42,18 @@ class RemoteRunner(IRunner):
             f"ws://localhost:3000/api/container/{owner}/{remote_env_id}?{params}"
         )
 
-    def step(self, action: object) -> object: ...
+        msg = json.dumps({"command": "build_env", "args": self.kwargs})
+        print(msg)
+        self._socket.send(msg)
+        recv = self._socket.recv()
+        # print(recv)
+
+    def step(self, action: object) -> object:
+        self._socket.send(json.dumps({"command": "step", "args": {"action": action}}))
+
+        recv = self._socket.recv()
+        # print(recv)
+        return recv
 
     def set_state(self) -> None:
         pass

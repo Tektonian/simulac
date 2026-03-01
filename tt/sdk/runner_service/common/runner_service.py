@@ -85,8 +85,9 @@ class RunnerManagementService(IRunnerManagementService):
         if env_json_uri.scheme in ["http", "https"]:
             runner_id = f"{self._ID_PREFIX}{len(self.runners)}"
             # api routing example
-            # http://0.0.0.0:3000/api/.../Tektonian/Rebero/env.json
-            [owner, remote_env_id] = env_json_uri.path.split("/")[-2:-1]
+            # http://0.0.0.0:3000/api/.../Tektonian/Lebero/env.json
+            print(env_json_uri.path.split("/"))
+            [owner, remote_env_id] = env_json_uri.path.split("/")[-3:-1]
 
             runner = RemoteRunner(
                 runner_id,

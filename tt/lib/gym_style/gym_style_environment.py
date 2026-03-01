@@ -26,6 +26,12 @@ class GymStyleEnvironment:
         self.remote_env_id = remote_env_id
         self.benchmark_specific = benchmark_specific
 
+        # region [Libero]
+        self.benchmark_specific["task_name"] = remote_env_id
+        self.benchmark_specific["task_id"] = 0
+        self.benchmark_specific["seed"] = seed
+        # endregion
+
         self.env_service: IEnvironmentManagementService = (
             instantiate_service.service_accessor.get(IEnvironmentManagementService)
         )
@@ -33,8 +39,8 @@ class GymStyleEnvironment:
         self.runner_service: IRunnerManagementService = (
             instantiate_service.service_accessor.get(IRunnerManagementService)
         )
-
-        base_url = f"http://0.0.0.0:3000/api/container/{benchmark_id}/{remote_env_id}"
+        [owner, env_id] = benchmark_id.split("/")
+        base_url = f"http://0.0.0.0:3000/api/container/{owner}/{env_id}"
         env_ret = self.env_service.create_environment(
             base_url + "/env.json", base_url + "/act.json", base_url + "/obs.json", seed
         )
