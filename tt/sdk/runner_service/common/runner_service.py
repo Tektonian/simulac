@@ -1,5 +1,5 @@
 from __future__ import annotations  # 3.7+ 에서 필요
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
@@ -33,7 +33,12 @@ class IRunnerManagementService(ServiceIdentifier):
         pass
 
     @abstractmethod
-    def create_runner(self, env_id: str) -> ResultType[str, BaseException]:
+    def remove_runner(self, runner_id: str) -> None: ...
+
+    @abstractmethod
+    def create_runner(
+        self, env_id: str, /, __remote_runner_kwargs: dict[str, Any]
+    ) -> ResultType[IRunner, BaseException]:
         pass
 
     @abstractmethod
@@ -58,7 +63,12 @@ class RunnerManagementService(IRunnerManagementService):
                 return (run, None)
         return (None, TektonianBaseError("no runner found"))
 
-    def create_runner(self, env_id: str):
+    def remove_runner(self, runner_id: str) -> None:
+        for run in self.runners:
+            if run.id == runner_id:
+                self.runners.remove(run)
+
+    def create_runner(self, env_id: str, /, __remote_runner_kwargs: dict[str, Any]):
         ret = self.EnvironmentManagementService.get_environment(env_id)
 
         if ret[0] is None:
@@ -74,9 +84,20 @@ class RunnerManagementService(IRunnerManagementService):
 
         if env_json_uri.scheme in ["http", "https"]:
             runner_id = f"{self._ID_PREFIX}{len(self.runners)}"
-            runner = RemoteRunner(runner_id, env_id, {})
+            # api routing example
+            # http://0.0.0.0:3000/api/.../Tektonian/Rebero/env.json
+            [owner, remote_env_id] = env_json_uri.path.split("/")[-2:-1]
+
+            runner = RemoteRunner(
+                runner_id,
+                env_id,
+                {},
+                owner,
+                remote_env_id,
+                kwargs=__remote_runner_kwargs,
+            )
             self.runners.append(runner)
-            return (runner_id, None)
+            return (runner, None)
         else:
             return (
                 None,

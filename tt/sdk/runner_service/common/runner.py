@@ -22,5 +22,8 @@ class IRunner(ABC):
         pass
 
     @abstractmethod
+    def clone_state(self) -> None: ...
+
+    @abstractmethod
     def render(self) -> None:
         pass
