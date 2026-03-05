@@ -1,19 +1,28 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
-from tt.sdk.runner_service.common.physics_engine_adapter import PhysicsEngineAdapter
+from tt.sdk.runner_service.common.physics_engine_adapter import IPhysicsEngineAdapter
 
 
 @dataclass
 class IRunner(ABC):
-
+    runner_type: str
     id: str
     env_id: str
     state: object
 
     @abstractmethod
-    def step(self, action: object) -> object:
+    def initialize(self) -> None: ...
+
+    @abstractmethod
+    def step(self, action: list[float]) -> None:
         pass
+
+    @abstractmethod
+    def tick(self) -> None: ...
+
+    @abstractmethod
+    def reset(self) -> None: ...
 
     @abstractmethod
     def set_state(self) -> None:
@@ -30,5 +39,7 @@ class IRunner(ABC):
     def render(self) -> None:
         pass
 
+
+class IRunnerFactory(ABC):
     @abstractmethod
-    def create_physics_engine_adapter(self) -> PhysicsEngineAdapter: ...
+    def create_runner(self) -> IRunner: ...
