@@ -5,7 +5,46 @@ import time
 from tt.lib.gym_style import init_bench
 
 # region User Interface example
-from tt.lib.world_maker import Randomize, Runner, World, Environment, Stuff, BIV, Robot
+from tt.lib.world_maker import Runner, World, Environment, Stuff, Robot
+
+from tt.sdk import environment_management_service, runner_management_service
+from tt.sdk.environment_service.common.model.component import (
+    MJCFPhysicsComponent,
+    RenderingComponent,
+)
+from tt.sdk.environment_service.common.model.entity import EnvironmentMJCFObjectEntity
+
+
+def test_world_build():
+    env_ret = environment_management_service.create_environment("", "", "", 0)
+    assert env_ret[0] is not None
+
+    env = env_ret[0]
+
+    ren_entity = RenderingComponent("", "")
+    physc_entity = MJCFPhysicsComponent("tt/asset/test/Basket/Basket026/model.xml")
+    entity = EnvironmentMJCFObjectEntity(rendering=ren_entity, physics=physc_entity)
+
+    environment_management_service.add_entity(env.id, entity)
+    ren_entity = RenderingComponent("", "")
+    physc_entity = MJCFPhysicsComponent(
+        "tt/asset/test/CheeseGrater/CheeseGrater002/model.xml"
+    )
+    entity = EnvironmentMJCFObjectEntity(rendering=ren_entity, physics=physc_entity)
+    entity.pos = (1, 0, 0)
+    environment_management_service.add_entity(env.id, entity)
+
+    runner_env = runner_management_service.create_runner(
+        env.id,
+    )
+
+    assert runner_env[0] is not None
+
+    runner = runner_env[0]
+
+    runner.step([])
+
+    runner.render()
 
 
 def test_world_make_example():
