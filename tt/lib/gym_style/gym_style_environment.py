@@ -27,6 +27,7 @@ class GymStyleEnvironment:
         self.benchmark_specific = benchmark_specific
 
         # region [Libero]
+        # TODO: mapping task_name to task_id
         self.benchmark_specific["task_name"] = remote_env_id
         self.benchmark_specific["task_id"] = 0
         self.benchmark_specific["seed"] = seed
@@ -55,7 +56,14 @@ class GymStyleEnvironment:
     def step(self, action: object) -> object:
         if self.runner is None:
             raise TektonianBaseError("Environment not reset")
-        return self.runner.step(action)
+        recv = self.runner.step(action)
+        import json, json_numpy
+        recv_dict = json.loads(recv)
+        obs = json_numpy.loads(recv_dict["obs"])
+        reward = recv_dict["reward"]
+        done = recv_dict["done"]
+        info = recv_dict["info"]
+        return obs, reward, done, info
 
     def reset(
         self, seed: int | None = None, options: dict[str, Any] | None = None
@@ -80,6 +88,14 @@ class GymStyleEnvironment:
             self.runner = runner_ret[0]
         else:
             raise runner_ret[1]
+        
+        import json, json_numpy
+        recv = self.runner.recv
+        recv_dict = json.loads(recv)
+        obs = json_numpy.loads(recv_dict['obs'])
+        info = recv_dict["info"]
+        
+        return obs, info
 
     def render(self) -> None: ...
 
