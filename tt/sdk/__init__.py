@@ -107,7 +107,7 @@ class RemoteAdapterFactory(IPhysicsEngineAdapterFactory):
 runner_management_service.register_physics_adapter_factory(
     ["remote"],
     instantiate_service.create_instance(
-        RemoteAdapter,
+        RemoteAdapterFactory,
     ),
 )
 
