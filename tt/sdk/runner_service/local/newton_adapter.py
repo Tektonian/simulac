@@ -89,6 +89,7 @@ class NewtonAdapter(IPhysicsEngineAdapter):
         for obj in objects:
             print(obj.physics.mjcf_uri)
 
+            # TODO: remove if else code later
             if "franka" in obj.physics.mjcf_uri:
                 self.__scene.add_urdf(obj.physics.mjcf_uri)
             else:
