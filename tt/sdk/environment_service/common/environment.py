@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Any, Literal
 from urllib.parse import urlsplit, SplitResult
 
 from tt.base.error.error import TektonianBaseError
@@ -26,11 +26,10 @@ class IEnvironment(ABC):
     physics_engine: Literal["mujoco", "newton", "genesis", "remote"]
     solver: Literal[""]  # TODO: add later
 
+    benchmark_specific_args: dict[str, Any]
+
     objects: list[EnvironmentMJCFObjectEntity | EnvironmentURDFObjectEntity] = field(
         default_factory=list
-    )
-    proprioception: list[EnvironmentMJCFObjectEntity | EnvironmentURDFObjectEntity] = (
-        field(default_factory=list)
     )
     cameras: list[EnvironmentMJCFObjectEntity | EnvironmentURDFObjectEntity] = field(
         default_factory=list
@@ -38,7 +37,20 @@ class IEnvironment(ABC):
     lights: list[EnvironmentMJCFObjectEntity | EnvironmentURDFObjectEntity] = field(
         default_factory=list
     )
+    machines: list[EnvironmentMJCFObjectEntity | EnvironmentURDFObjectEntity] = field(
+        default_factory=list
+    )
+    # region TODO: implment later
+    particles: list[EnvironmentMJCFObjectEntity | EnvironmentURDFObjectEntity] = field(
+        default_factory=list
+    )
+    soft_bodies: list[EnvironmentMJCFObjectEntity | EnvironmentURDFObjectEntity] = (
+        field(default_factory=list)
+    )
+    randoms: list[dict[str, dict[str, dict[str, str]]]]
+    constraints: list[dict[str, str]]
 
+    # end-region
     @abstractmethod
     def snapshop(self):
         pass
