@@ -42,7 +42,7 @@ class IEnvironmentBuildService(ServiceIdentifier["IEnvironmentBuildService"]):
         self,
         env_id: str,
         entity: EnvironmentEntityType,
-    ): ...
+    ) -> str: ...
 
     @abstractmethod
     def remove_entity(self, entity_id: str): ...
@@ -143,6 +143,8 @@ class EnvironmentBuildService(IEnvironmentBuildService):
 
         self.env_entities_map[env.id].append(entity)
         self.entities_map[new_entity_id] = entity
+
+        return new_entity_id
 
     def change_pos(self, entity_id: str, pos: Tuple[float, float, float]):
         entity = self.entities_map.get(entity_id, None)
