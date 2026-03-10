@@ -69,10 +69,14 @@ class EnvironmentLightEntity:
         type: Literal["ambient", "pointlight", "reactarea", "spot"],
         color: str,
         intensity: float = 0.8,
+        pos: Tuple[float, float, float] = (0, 0, 0),
+        quat: Tuple[float, float, float, float] = (0, 0, 0, 1),
     ) -> None:
         self.type = type
         self.color = color
         self.intensity = intensity
+        self.pos = pos
+        self.quat = quat
 
 
 class EnvironmentObjectEntity:
