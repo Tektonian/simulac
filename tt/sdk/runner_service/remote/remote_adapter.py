@@ -109,7 +109,7 @@ class RemoteAdapter(IPhysicsEngineAdapter):
             self._step_count_map[runner_id] += 1
             self._step_count += 1
 
-        new_runner_id = f"{IRunner.__ID_PREVIX}{self._runner_count}"
+        new_runner_id = f"run_{self._runner_count}"
         runner = RemoteRunner(
             new_runner_id,
             self.env.id,

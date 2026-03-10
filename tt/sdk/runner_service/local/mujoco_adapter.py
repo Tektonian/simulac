@@ -181,7 +181,7 @@ class MujocoAdapter(IPhysicsEngineAdapter):
             self._step_count_map[runner_id] += 1
             self._step_count += 1
 
-        new_runner_id = f"{IRunner.__ID_PREVIX}{self._runner_count}"
+        new_runner_id = f"run_{self._runner_count}"
 
         runner = MujocoRunner(
             new_runner_id,
@@ -193,7 +193,7 @@ class MujocoAdapter(IPhysicsEngineAdapter):
         self.LogService.debug(
             f"new mujoco runner created env_id: {self.env_id} runner_id: {new_runner_id}"
         )
-        self._step_count_map[self._runner_count] = 0
+        self._step_count_map[new_runner_id] = 0
         self._runner_count += 1
 
         return runner

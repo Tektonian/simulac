@@ -162,7 +162,7 @@ class NewtonAdapter(IPhysicsEngineAdapter):
                 )
                 self._state_0, self._state_1 = self._state_1, self._state_0
             self._step_count += 1
-            self._step_count_map[f"{IRunner.__ID_PREVIX}{runner_idx}"] += 1
+            self._step_count_map[f"run_{runner_idx}"] += 1
 
             # TODO: Remove later
             self.__set_debug_viewer((1.0 / 60.0 / 4.0) * self._step_count)
@@ -171,7 +171,7 @@ class NewtonAdapter(IPhysicsEngineAdapter):
             env_id=self.env.id, runner_idx=self._runner_count, step=runner_step
         )
 
-        new_runner_id = f"{IRunner.__ID_PREVIX}{self._runner_count}"
+        new_runner_id = f"run_{self._runner_count}"
         self.LogService.debug(
             f"new newton runner created env_id: {self.env_id} runner_id: {new_runner_id}"
         )
