@@ -65,11 +65,17 @@ class GymStyleEnvironment:
         recv = self.runner.step(action)
         import json, json_numpy
         recv_dict = json.loads(recv)
-        obs = json_numpy.loads(recv_dict["obs"])
-        reward = recv_dict["reward"]
-        done = recv_dict["done"]
-        info = recv_dict["info"]
-        return obs, reward, done, info
+        try:
+            obs = json_numpy.loads(recv_dict["obs"])
+            reward = recv_dict["reward"]
+            done = recv_dict["done"]
+            info = recv_dict["info"]
+            return obs, reward, done, info
+        except Exception as e:
+            raise TektonianBaseError(
+                f"Failed to parse observation: {e.__class__.__name__}: {e}\n"
+                f"Response from server: {json.dumps(recv_dict, indent=2)}"
+            )
 
     def reset(
         self, seed: int | None = None, options: dict[str, Any] | None = None
@@ -98,10 +104,15 @@ class GymStyleEnvironment:
         import json, json_numpy
         recv = self.runner.recv
         recv_dict = json.loads(recv)
-        obs = json_numpy.loads(recv_dict['obs'])
-        info = recv_dict["info"]
-        
-        return obs, info
+        try:
+            obs = json_numpy.loads(recv_dict['obs'])
+            info = recv_dict["info"]
+            return obs, info
+        except Exception as e:
+            raise TektonianBaseError(
+                f"Failed to parse initial observation: {e.__class__.__name__}: {e}\n"
+                f"Response from server: {json.dumps(recv_dict, indent=2)}"
+            )
 
     def render(self) -> None: ...
 
