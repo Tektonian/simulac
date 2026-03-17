@@ -57,6 +57,9 @@ dependencies = [
     "posthog>=7.8.5",
     "json-numpy>=2.1.1",
     "mujoco>=3.5.0",
+    "nox>=2026.2.9",
+    "pytest-cov>=7.0.0",
+    "websockets>=15.0.1",
 ]
 
 [project.urls]
