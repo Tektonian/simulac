@@ -42,7 +42,8 @@ class RemoteRunner(IRunner):
         #     f"ws://localhost:3000/api/container/{owner}/{remote_env_id}?{params}"
         # )
         self._socket = connect(
-            f"ws://localhost:3000/ws"
+            f"ws://localhost:3000/ws",
+            max_size=10 * 1024 * 1024,  # 10MB
         )
 
         msg = json.dumps({"command": "build_env", "args": self.kwargs})

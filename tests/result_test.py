@@ -3,6 +3,8 @@ import random
 import time
 
 from tt.lib.gym_style import init_bench
+from PIL import Image
+import numpy as np
 
 
 def test_result_type():
@@ -44,20 +46,46 @@ def test_result_type():
     # return
     # # test end
 
-    # test start: robomimic
+    # # test start: robomimic
+    # env = init_bench(
+    #     "Tektonian/Robomimic",
+    #     "transport",#"square",#"can",#"lift",
+    #     0,
+    #     benchmark_specific={"floating_base": True, "control_frequency": 50},
+    # )
+    
+    # obs, info = env.reset(seed=0)
+    # lang = info['task_description']
+    # for _ in range(20):
+    #     obs, rew, done, info = env.step([0] * 14)
+    
+    # assert 1 == True
+    # return
+    # # test end
+
+    # test start: calvin
+    env_id = "C" # one of A, B, C, D
     env = init_bench(
-        "Tektonian/Robomimic",
-        "transport",#"square",#"can",#"lift",
+        "Tektonian/Calvin",
+        env_id,
         0,
-        benchmark_specific={"floating_base": True, "control_frequency": 50},
     )
     
     obs, info = env.reset(seed=0)
-    lang = info['task_description']
-    for _ in range(20):
-        obs, rew, done, info = env.step([0] * 14)
+    lang = info['task_description'][0]
+    for _ in range(2):
+        obs, rew, done, info = env.step([0] * 7)
+        
+        # get current active language instruction
+        task_progress = info['task_progress']
+        lang = task_progress.get('active_language_instruction', lang)
+        print(f"Current language instruction: {lang}")
+            
+    img = obs['images']['cam_1_rgb']
+    if isinstance(img, np.ndarray):
+        img = Image.fromarray(img.astype(np.uint8))
+    img.save(f"calvin_{env_id}_test.png")
     
-    assert 1 == True
     return
     # test end
 
