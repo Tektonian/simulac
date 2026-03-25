@@ -37,6 +37,12 @@ from tt.sdk.world_service.common.world_service import (
     WorldManagementService,
 )
 
+# ======================================================
+# PLEASE DO NOT CHANGE THE ORDER OF EACH '# region'
+# ======================================================
+
+# region register singleton services
+
 register_singleton(ILogService, LogService)
 register_singleton(IEnvvarService, EnvvarService)
 register_singleton(ISimulationManagementService, SimulationManagementService)
@@ -45,10 +51,19 @@ register_singleton(IWorldManagementService, WorldManagementService)
 register_singleton(IEnvironmentManagementService, EnvironmentManagementService)
 register_singleton(IEnvironmentBuildService, EnvironmentBuildService)
 
+# end-region
+
+# region register services
+
 services = get_singleton_service_descriptors()
 services = ServiceCollection(services)
 
 instantiate_service = InstantiateService(services)
+
+# end-region
+
+# region get services TODO
+# Getting services directly is anti-pattern. Should be change in the future
 
 runner_management_service: IRunnerManagementService = (
     instantiate_service.service_accessor.get(IRunnerManagementService)
@@ -62,6 +77,10 @@ environment_build_service: IEnvironmentBuildService = (
 )
 
 
+# end-region
+
+
+# region register physical engine adapter
 class MujocoAdapterFactory(IPhysicsEngineAdapterFactory):
     def __init__(self) -> None: ...
     @staticmethod
@@ -120,6 +139,8 @@ runner_management_service.register_physics_adapter_factory(
         RemoteAdapterFactory,
     ),
 )
+
+# end-region
 
 simulation_service: ISimulationManagementService = (
     instantiate_service.service_accessor.get(SimulationManagementService)
