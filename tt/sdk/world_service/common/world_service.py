@@ -21,7 +21,7 @@ class IWorld:
 
 
 @service_identifier("IWorldManagementService")
-class IWorldManagementService(ServiceIdentifier):
+class IWorldManagementService(ServiceIdentifier["IWorldManagementService"]):
     _ID_PREFIX = "world_"
 
     @property

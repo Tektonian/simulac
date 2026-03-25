@@ -15,8 +15,11 @@ class InstantiateType(Enum):
 _registry: List[Tuple[Type[ServiceIdentifier[object]], SyncDescriptor[Any]]] = []
 
 
-def register_singleton(
-    interface: Type[ServiceIdentifier[object]],
+O = TypeVar("O", bound=object)
+
+
+def register_singleton[O](
+    interface: Type[ServiceIdentifier[O]],
     descriptor: Type[object],
     support_delayed_instantiation: InstantiateType = InstantiateType.DELAYED,
 ):

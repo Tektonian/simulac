@@ -20,7 +20,7 @@ DEFAULT_LOG_LEVEL: LogLevel = LogLevel.INFO
 
 
 @service_identifier("ILogService")
-class ILogService(ServiceIdentifier):
+class ILogService(ServiceIdentifier["ILogService"]):
     @abstractmethod
     def set_level(self, level: LogLevel) -> None:
         pass

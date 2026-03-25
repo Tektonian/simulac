@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
 
 @service_identifier("IRunnerManagementService")
-class IRunnerManagementService(ServiceIdentifier):
+class IRunnerManagementService(ServiceIdentifier["IRunnerManagementService"]):
     _ID_PREFIX = "run_"
 
     @property
