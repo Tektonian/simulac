@@ -21,6 +21,3 @@ __all__ = [
     "CameraObject",
     "LightObject",
 ]
-
-
-__version__ = "0.0.1"
