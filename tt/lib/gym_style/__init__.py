@@ -52,3 +52,6 @@ def init_bench(
 def make_vec(envs: list[BenchmarkEnvironment]):
     vec_env = BenchmarkVecEnvironment(envs)
     return vec_env
+
+
+__all__ = ["init_bench", "make_vec"]
