@@ -86,10 +86,13 @@ dev = [
 # END - project setting
 
 # START - tool setting
-
 [tool.ruff.lint]
-select = ["E", "F", "I002", "TC004"]
+select = ["E", "F", "I", "TC004"]
 ignore = ["F401"]
+
+[tool.ruff.format]
+docstring-code-format = true
+exclude = ["trash"]
 
 [tool.pyright]
 stubPath = ".typings"
