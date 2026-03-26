@@ -2,27 +2,27 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal
 
-from tt.sdk.environment_service.common.environment_service import (
+from simulac.sdk.environment_service.common.environment_service import (
     EnvironmentManagementService,
 )
-from tt.sdk.environment_service.common.model.component import (
+from simulac.sdk.environment_service.common.model.component import (
     MJCFPhysicsComponent,
     RenderingComponent,
     URDFPhysicsComponent,
     USDPhysicsComponent,
 )
-from tt.sdk.environment_service.common.model.entity import (
+from simulac.sdk.environment_service.common.model.entity import (
     EnvironmentCameraEntity,
     EnvironmentLightEntity,
     EnvironmentMachineEntity,
     EnvironmentObjectEntity,
 )
-from tt.sdk.log_service.common.log_service import ILogService
-from tt.sdk.runner_service.common.runner_service import RunnerManagementService
+from simulac.sdk.log_service.common.log_service import ILogService
+from simulac.sdk.runner_service.common.runner_service import RunnerManagementService
 
 if TYPE_CHECKING:
-    from tt.sdk.environment_service.common.environment import IEnvironment
-    from tt.sdk.runner_service.common.runner import IRunner
+    from simulac.sdk.environment_service.common.environment import IEnvironment
+    from simulac.sdk.runner_service.common.runner import IRunner
 
     Position = tuple[float, float, float]
     Quaternion = tuple[float, float, float, float]

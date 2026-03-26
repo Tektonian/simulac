@@ -1,4 +1,4 @@
-from tt.sdk import obtain_runtime
+from simulac.sdk import obtain_runtime
 
 
 class Stuff:

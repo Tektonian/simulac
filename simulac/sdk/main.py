@@ -1,38 +1,38 @@
 from typing import Any
 
-from tt.base.envvar.envvar import IEnvvarService
-from tt.base.envvar.envvar_service import EnvvarService
-from tt.base.instantiate.extensions import (
+from simulac.base.envvar.envvar import IEnvvarService
+from simulac.base.envvar.envvar_service import EnvvarService
+from simulac.base.instantiate.extensions import (
     get_singleton_service_descriptors,
     register_singleton,
 )
-from tt.base.instantiate.instantiate_service import InstantiateService
-from tt.base.instantiate.service_collection import ServiceCollection
-from tt.sdk.environment_service.common.environment_build_service import (
+from simulac.base.instantiate.instantiate_service import InstantiateService
+from simulac.base.instantiate.service_collection import ServiceCollection
+from simulac.sdk.environment_service.common.environment_build_service import (
     EnvironmentBuildService,
     IEnvironmentBuildService,
 )
-from tt.sdk.environment_service.common.environment_service import (
+from simulac.sdk.environment_service.common.environment_service import (
     EnvironmentManagementService,
     IEnvironmentManagementService,
 )
-from tt.sdk.log_service.common.log_service import ILogService, LogService
-from tt.sdk.runner_service.common.physics_engine_adapter import (
+from simulac.sdk.log_service.common.log_service import ILogService, LogService
+from simulac.sdk.runner_service.common.physics_engine_adapter import (
     IPhysicsEngineAdapter,
     IPhysicsEngineAdapterFactory,
 )
-from tt.sdk.runner_service.common.runner_service import (
+from simulac.sdk.runner_service.common.runner_service import (
     IRunnerManagementService,
     RunnerManagementService,
 )
-from tt.sdk.runner_service.local.mujoco_adapter import MujocoAdapter
-from tt.sdk.runner_service.local.newton_adapter import NewtonAdapter
-from tt.sdk.runner_service.remote.remote_adapter import RemoteAdapter
-from tt.sdk.telemetry_service.common.telemetry_service import (
+from simulac.sdk.runner_service.local.mujoco_adapter import MujocoAdapter
+from simulac.sdk.runner_service.local.newton_adapter import NewtonAdapter
+from simulac.sdk.runner_service.remote.remote_adapter import RemoteAdapter
+from simulac.sdk.telemetry_service.common.telemetry_service import (
     ITelemetryService,
     TelemetryService,
 )
-from tt.sdk.world_service.common.world_service import (
+from simulac.sdk.world_service.common.world_service import (
     IWorldManagementService,
     WorldManagementService,
 )

@@ -6,7 +6,7 @@ from typing import List, MutableMapping, Tuple
 
 import mujoco
 
-from tt.base.error.error import TektonianBaseError
+from simulac.base.error.error import TektonianBaseError
 
 
 @dataclass

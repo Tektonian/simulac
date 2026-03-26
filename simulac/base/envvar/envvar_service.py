@@ -5,10 +5,10 @@ from enum import StrEnum
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from tt.base.envvar.envvar import IEnvvarService
+from simulac.base.envvar.envvar import IEnvvarService
 
 if TYPE_CHECKING:
-    from tt.sdk.log_service.common.log_service import LogLevel
+    from simulac.sdk.log_service.common.log_service import LogLevel
 
 
 class EnvvarKeyValue(StrEnum):

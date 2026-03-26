@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from pathlib import Path
 
-from tt.base.instantiate.instantiate import ServiceIdentifier, service_identifier
+from simulac.base.instantiate.instantiate import ServiceIdentifier, service_identifier
 
 
 @service_identifier("IEnvvarService")

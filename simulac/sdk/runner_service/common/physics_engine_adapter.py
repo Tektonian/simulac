@@ -5,10 +5,10 @@ from contextlib import AbstractContextManager
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, MutableMapping
 
-from tt.sdk.runner_service.common.runner import IRunnerFactory
+from simulac.sdk.runner_service.common.runner import IRunnerFactory
 
 if TYPE_CHECKING:
-    from tt.sdk.environment_service.common.model.entity import (
+    from simulac.sdk.environment_service.common.model.entity import (
         EnvironmentMJCFObjectEntity,
     )
 

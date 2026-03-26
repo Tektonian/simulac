@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Optional, Tuple
 from uuid import uuid4
 
 if TYPE_CHECKING:
-    from tt.sdk.environment_service.common.model.component import (
+    from simulac.sdk.environment_service.common.model.component import (
         MJCFPhysicsComponent,
         RenderingComponent,
         URDFPhysicsComponent,

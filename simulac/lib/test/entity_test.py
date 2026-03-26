@@ -1,4 +1,4 @@
-from tt.lib.world_maker.object import Environment, Runner, Stuff
+from simulac.lib.world_maker.object import Environment, Runner, Stuff
 
 
 def test_entity_build():

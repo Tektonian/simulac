@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import List, Literal, Tuple, overload
 
-from tt.base.error.error import TektonianBaseError
-from tt.sdk import obtain_runtime
+from simulac.base.error.error import TektonianBaseError
+from simulac.sdk import obtain_runtime
 
 from .entity import Camera, Light, Robot, Stuff
 

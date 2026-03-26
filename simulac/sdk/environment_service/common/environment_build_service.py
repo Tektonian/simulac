@@ -5,24 +5,24 @@ from copy import deepcopy
 from typing import TYPE_CHECKING, List, MutableMapping, Tuple, TypeVar, Union
 from urllib.parse import SplitResult
 
-from tt.base.error.error import TektonianBaseError
-from tt.base.instantiate.instantiate import ServiceIdentifier, service_identifier
-from tt.sdk.environment_service.common.environment_service import (
+from simulac.base.error.error import TektonianBaseError
+from simulac.base.instantiate.instantiate import ServiceIdentifier, service_identifier
+from simulac.sdk.environment_service.common.environment_service import (
     IEnvironmentManagementService,
 )
-from tt.sdk.environment_service.common.model.entity import (
+from simulac.sdk.environment_service.common.model.entity import (
     EnvironmentCameraEntity,
     EnvironmentLightEntity,
     EnvironmentMachineEntity,
     EnvironmentObjectEntity,
 )
-from tt.sdk.log_service.common.log_service import ILogService
+from simulac.sdk.log_service.common.log_service import ILogService
 
 if TYPE_CHECKING:
     import urllib.parse
 
-    from tt.sdk.environment_service.common.environment import IEnvironment
-    from tt.sdk.environment_service.common.model.component import (
+    from simulac.sdk.environment_service.common.environment import IEnvironment
+    from simulac.sdk.environment_service.common.model.component import (
         MJCFPhysicsComponent,
         URDFPhysicsComponent,
         USDPhysicsComponent,

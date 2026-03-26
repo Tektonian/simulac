@@ -14,7 +14,7 @@ from typing import (
 )
 
 if TYPE_CHECKING:
-    from tt.base.instantiate.descriptor import SyncDescriptor
+    from simulac.base.instantiate.descriptor import SyncDescriptor
 
 T = TypeVar("T")
 I = TypeVar("I")

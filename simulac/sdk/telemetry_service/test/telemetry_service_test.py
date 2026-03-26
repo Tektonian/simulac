@@ -4,11 +4,11 @@ from queue import Queue
 
 from pytest import MonkeyPatch
 
-from tt.base.envvar.envvar_service import EnvvarKeyValue, EnvvarService
-from tt.sdk.telemetry_service.common import (
+from simulac.base.envvar.envvar_service import EnvvarKeyValue, EnvvarService
+from simulac.sdk.telemetry_service.common import (
     telemetry_service as telemetry_service_module,
 )
-from tt.sdk.telemetry_service.common.telemetry_service import TelemetryService
+from simulac.sdk.telemetry_service.common.telemetry_service import TelemetryService
 
 
 class _DummyResponse:

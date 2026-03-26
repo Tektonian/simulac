@@ -5,16 +5,16 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Literal, Mapping, Union, overload
 from urllib.parse import SplitResult, urlsplit
 
-from tt.base.error.error import TektonianBaseError
-from tt.base.instantiate.instantiate import ServiceIdentifier, service_identifier
-from tt.base.result.result import ResultType
-from tt.sdk.environment_service.common.model.component import (
+from simulac.base.error.error import TektonianBaseError
+from simulac.base.instantiate.instantiate import ServiceIdentifier, service_identifier
+from simulac.base.result.result import ResultType
+from simulac.sdk.environment_service.common.model.component import (
     MJCFPhysicsComponent,
     URDFPhysicsComponent,
     USDPhysicsComponent,
 )
-from tt.sdk.log_service.common.log_service import ILogService
-from tt.sdk.world_service.common.world_service import IWorldManagementService
+from simulac.sdk.log_service.common.log_service import ILogService
+from simulac.sdk.world_service.common.world_service import IWorldManagementService
 
 from .environment import IEnvironment
 

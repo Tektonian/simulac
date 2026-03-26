@@ -9,9 +9,9 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
-from tt.base.envvar.envvar import IEnvvarService
-from tt.base.instantiate.instantiate import ServiceIdentifier, service_identifier
-from tt.sdk.telemetry_service.common.telemetry import TelemetryLevelEnum
+from simulac.base.envvar.envvar import IEnvvarService
+from simulac.base.instantiate.instantiate import ServiceIdentifier, service_identifier
+from simulac.sdk.telemetry_service.common.telemetry import TelemetryLevelEnum
 
 
 @service_identifier("ITelemetryService")

@@ -1,6 +1,6 @@
 import pytest
 
-from tt.base.instantiate.graph import Graph
+from simulac.base.instantiate.graph import Graph
 
 
 @pytest.fixture()

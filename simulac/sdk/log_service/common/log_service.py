@@ -4,7 +4,7 @@ from typing import Any, Tuple
 
 import structlog
 
-from tt.base.instantiate.instantiate import ServiceIdentifier, service_identifier
+from simulac.base.instantiate.instantiate import ServiceIdentifier, service_identifier
 
 
 class LogLevel(Enum):

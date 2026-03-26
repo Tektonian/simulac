@@ -5,8 +5,8 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Literal
 from urllib.parse import SplitResult, urlsplit
 
-from tt.base.error.error import TektonianBaseError
-from tt.sdk.environment_service.common.model.entity import (
+from simulac.base.error.error import TektonianBaseError
+from simulac.sdk.environment_service.common.model.entity import (
     EnvironmentCameraEntity,
     EnvironmentLightEntity,
     EnvironmentMachineEntity,
@@ -14,7 +14,7 @@ from tt.sdk.environment_service.common.model.entity import (
 )
 
 if TYPE_CHECKING:
-    from tt.sdk.environment_service.common.model.entity import (
+    from simulac.sdk.environment_service.common.model.entity import (
         EnvironmentMJCFObjectEntity,
         EnvironmentURDFObjectEntity,
     )

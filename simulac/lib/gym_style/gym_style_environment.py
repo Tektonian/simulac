@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Any, MutableMapping, Tuple
 import json_numpy
 from websockets.sync.client import ClientConnection, connect
 
-from tt.sdk import obtain_runtime
+from simulac.sdk import obtain_runtime
 
 type GymEnvStepReturnType = Tuple[
     dict[str, Any],  # obs

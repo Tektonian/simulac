@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from enum import Enum, IntEnum
 from typing import TYPE_CHECKING, List, Optional, Tuple
 
-from tt.base.error.error import TektonianBaseError
-from tt.base.instantiate.instantiate import ServiceIdentifier, service_identifier
-from tt.base.result.result import ResultType
+from simulac.base.error.error import TektonianBaseError
+from simulac.base.instantiate.instantiate import ServiceIdentifier, service_identifier
+from simulac.base.result.result import ResultType
 
 if TYPE_CHECKING:
     import urllib.parse

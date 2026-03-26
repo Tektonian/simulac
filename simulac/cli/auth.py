@@ -7,7 +7,7 @@ from typing import Annotated, Optional
 
 import typer
 
-from tt.base.envvar.envvar_service import EnvvarService
+from simulac.base.envvar.envvar_service import EnvvarService
 
 app = typer.Typer(help="Tektonian CLI — interact with Tektonian services")
 

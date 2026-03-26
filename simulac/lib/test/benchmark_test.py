@@ -1,4 +1,4 @@
-from tt.lib.gym_style import init_bench, make_vec
+from simulac.lib.gym_style import init_bench, make_vec
 
 
 def test_libero_benchmark():

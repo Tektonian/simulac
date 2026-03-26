@@ -4,12 +4,12 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, List, Mapping, Optional
 
-from tt.base.error.error import TektonianBaseError
-from tt.base.instantiate.instantiate import ServiceIdentifier, service_identifier
-from tt.base.result.result import ResultType
+from simulac.base.error.error import TektonianBaseError
+from simulac.base.instantiate.instantiate import ServiceIdentifier, service_identifier
+from simulac.base.result.result import ResultType
 
 if TYPE_CHECKING:
-    from tt.sdk.environment_service.common.environment import IEnvironment
+    from simulac.sdk.environment_service.common.environment import IEnvironment
 
 
 @dataclass

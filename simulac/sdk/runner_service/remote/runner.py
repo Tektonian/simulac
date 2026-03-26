@@ -5,7 +5,7 @@ from urllib.parse import urlencode
 
 from websockets.sync.client import ClientConnection, connect
 
-from tt.sdk.runner_service.common.runner import IRunner
+from simulac.sdk.runner_service.common.runner import IRunner
 
 
 @dataclass

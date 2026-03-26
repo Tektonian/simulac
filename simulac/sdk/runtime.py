@@ -1,14 +1,14 @@
 import sys
 
-from tt.base.envvar.envvar import IEnvvarService
-from tt.sdk.environment_service.common.environment_build_service import (
+from simulac.base.envvar.envvar import IEnvvarService
+from simulac.sdk.environment_service.common.environment_build_service import (
     IEnvironmentBuildService,
 )
-from tt.sdk.environment_service.common.environment_service import (
+from simulac.sdk.environment_service.common.environment_service import (
     IEnvironmentManagementService,
 )
-from tt.sdk.log_service.common.log_service import ILogService
-from tt.sdk.runner_service.common.runner_service import IRunnerManagementService
+from simulac.sdk.log_service.common.log_service import ILogService
+from simulac.sdk.runner_service.common.runner_service import IRunnerManagementService
 
 from .main import instantiate_service
 from .world_maker import WorldMakerFacade
