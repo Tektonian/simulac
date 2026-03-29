@@ -14,6 +14,16 @@ def test_libero_benchmark():
             "env_id": "libero_10",
         },
     )
+    EMPTY_ACTION = [0] * 7
+    obs_history = []
+    obs_history.append(env.step(EMPTY_ACTION))
+    for _ in range(4):
+        obs_history.append(env.step(EMPTY_ACTION))
+
+    reset = env.reset(0)
+    for i in range(len(obs_history)):
+        ret = env.step(EMPTY_ACTION)
+        assert ret == obs_history[i]
 
 
 def test_parallel_libero():
