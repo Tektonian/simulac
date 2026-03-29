@@ -28,11 +28,23 @@ def init_bench(
     /,
     benchmark_specific: dict[str, Any] = {},
 ):
-    """Initialize environment
+    """Initalize benchmark service
 
     Args:
-        env_uri (str): Environment URI could be .json file location, remote prebuilt environment uri
-        sim_id (str): _description_
+        benchmark_id (str): Full benchmark id.\n
+            Example: benchmark_id="Tektonian/Libero"
+        env_id (Optional[str]): Environment id of the benchmark.\n
+            `env_id=None` means run all benchmark list\n
+            `env_id="libero_10"` means run all `"libero_10"` benchmark list\n
+            `env_id="libero_10/TASK_EXAMPLE"` means run one specific test\n
+            If you want to see the full list of the `env_id` visit https://tektonian.com/benchmark
+        seed (int, optional): Seed for inital state. Defaults to 0.
+        benchmark_specific (dict[str, Any], optional): Benchmark specific option field.\n
+            Also, if you want to know the full field and meaning please visit https://tektonian.com/benchmark\n
+            Defaults to {}.
+
+    Returns:
+        ret (BenchmarkEnvironment|BenchmarkVecEnvironment):
     """
 
     if env_id is None:
