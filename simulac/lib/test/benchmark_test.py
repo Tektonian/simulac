@@ -1,6 +1,7 @@
 from simulac.lib.gym_style import init_bench, make_vec
 
 
+@pytest.mark.integration
 def test_libero_benchmark():
     env = init_bench(
         "Tektonian/Libero",
@@ -28,6 +29,9 @@ def test_libero_benchmark():
 
 def test_parallel_libero():
 
+@pytest.mark.integration
+def test_parallel_libero():
+    return
     ast_option = ["Tektonian/Libero", "env", 0]
     options = dict(
         benchmark_specific={

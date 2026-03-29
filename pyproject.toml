@@ -115,5 +115,8 @@ source-include = ["simulac/**"]
 
 # START - testing tool
 [tool.pytest.ini_options]
+markers = [
+    "integration: tests requiring external web service",
+]
 pythonpath = ["."]
 # END - testing tool
