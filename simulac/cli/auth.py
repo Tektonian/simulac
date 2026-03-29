@@ -88,10 +88,10 @@ def _mask_secret(secret: str | None) -> str:
     """Return masked api key
 
     Args:
-        secret (str | None): Api key value. Should be look like `tt_sim_***
+        secret (str | None): Api key value. Should look like `tt_sim_***
 
     Returns:
-        str: _description_
+        str: Masked API key string with only the prefix visible
     """
     if not secret:
         return "preview unavailable"
