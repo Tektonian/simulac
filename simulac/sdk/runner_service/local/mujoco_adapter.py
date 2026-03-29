@@ -103,7 +103,7 @@ class MujocoRunner(IRunner):
     def render(self) -> None: ...
     def reset(self) -> None: ...
 
-    def __debug_render(self):
+    def _debug_render(self):
         return mujoco.viewer.launch_passive(self.mj_model, self._data)
 
 
@@ -158,7 +158,7 @@ class MujocoAdapter(IPhysicsEngineAdapter):
                     body.pos = list(obj.pos)
                     body.quat = list(obj.quat)
 
-            self.root_spec.attach(child, frame=self.root_frame, prefix=obj.uuid)
+            self.root_spec.attach(child, frame=self.root_frame, prefix=obj.id)
         """
         TODO: 
             1. implement mujoco parallel
