@@ -32,7 +32,7 @@ class BenchmarkEnvironment:
         benchmark_specific_kwargs: dict[str, Any],
     ):
 
-        self.runtime = obtain_runtime()
+        self._runtime = obtain_runtime()
 
         self.runner_id = runner_id
         self.benchmark_id = benchmark_id
@@ -48,7 +48,7 @@ class BenchmarkEnvironment:
             return
 
         query_param = urllib.parse.urlencode({"api_key": ""})
-        base_url = urllib.parse.urlparse(self.runtime.envvar_service.base_url)
+        base_url = urllib.parse.urlparse(self._runtime.environment_variable.base_url)
         base_url = base_url._replace(
             scheme="ws" if base_url.scheme == "http" else "wss",
             path=os.path.join(
@@ -58,8 +58,8 @@ class BenchmarkEnvironment:
             query=query_param,
         )
         url = base_url.geturl()
-        print(url)
         self._socket = connect(url)
+        self._runtime.logger.debug(f"socket connected. url: {url}")
         msg = json.dumps(
             {
                 "command": "build_env",
@@ -74,8 +74,9 @@ class BenchmarkEnvironment:
         recv = self._socket.recv(decode=False)
         recv = zstd.uncompress(recv)
         recv = msgpack.unpackb(recv)
-        # recv = json_numpy.loads(self._socket.recv())
-        print("connect")
+        self._runtime.logger.debug(
+            f"benchmark env built. ID: {self.benchmark_id} / ENV: {self.remote_env_id}"
+        )
 
     def step(self, action: list[float]) -> GymEnvStepReturnType:
 
@@ -136,7 +137,6 @@ class BenchmarkVecEnvironment:
         # Phase 1: send in parallel
         def _send_payload(r: BenchmarkEnvironment, action: list[float]) -> None:
             payload: dict[str, Any] = {"command": "step", "args": {"action": action}}
-            print("thread send")
             r._socket.send(json.dumps(payload))  # type: ignore[union-attr]
 
         with ThreadPoolExecutor(max_workers=len(self.benchmark_envs)) as ex:
