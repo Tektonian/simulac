@@ -242,4 +242,20 @@ class BenchmarkVecEnvironment:
 
         return results
 
-    def reset_parallel(self): ...
+    def reset(self, seeds: list[int]):
+
+        def _send_reset(r: BenchmarkEnvironment, seed: int) -> None:
+            socket = r._ensure_connected()
+            r._send_command(socket, "reset", seed=seed)
+
+        with ThreadPoolExecutor(max_workers=len(self._benchmark_envs)) as ex:
+            # Phase 1: send in parallel, maintain order
+            recv_futs = {
+                ex.submit(_send_reset, z[0], z[1]): i
+                for i, z in enumerate(zip(self._benchmark_envs, seeds))
+            }
+            results: list[Any] = [None] * len(self._benchmark_envs)
+            for f in as_completed(recv_futs):
+                idx = recv_futs[f]
+                results[idx] = f.result()
+        return results
