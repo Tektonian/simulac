@@ -23,11 +23,10 @@ body:
     attributes:
       label: What OS are you seeing the problem on?
       description: |
-          - Window (use `systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version"`)
+          - Window (use 'systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version"')
+          - Linux (use 'uname -a')\n
 
-          - Linux (use `uname -a`)\n
-
-          - MacOS (use `unmae -a`)\n
+          - MacOS (use 'unmae -a')\n
   - type: textarea
     id: logs
     attributes:
